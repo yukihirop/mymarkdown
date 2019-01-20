@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <h1><img alt="MyMarkdown" src="../assets/logo.png"></h1>
     <h1>{{ msg }}</h1>
     <button @click="googleLogin">Googleアカウントでログイン</button>
   </div>
