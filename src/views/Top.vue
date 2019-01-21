@@ -1,26 +1,29 @@
 <template>
   <div id="top">
+    <GlobalNav :user="userData"></GlobalNav>
     <Home v-if="!isLogin"></Home>
     <Editor v-if="isLogin" :user="userData"></Editor>
-    <router-link :to="{name: 'terms' }">利用規約</router-link>
   </div>
 </template>
 
 <script>
 import Home from "../components/Home.vue";
 import Editor from "../components/Editor.vue";
+import GlobalNav from "../components/GlobalNav.vue";
 
 export default {
   name: "app",
   data(){
     return {
       isLogin: false,
-      userData: null
+      userData: null,
+      isLoginChecked: false
     }
   },
   components:{
     Home: Home,
-    Editor: Editor
+    Editor: Editor,
+    GlobalNav: GlobalNav
   },
   created: function() {
     firebase.auth().onAuthStateChanged(user => {
