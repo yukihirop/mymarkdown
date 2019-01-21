@@ -41,7 +41,8 @@ export default {
           markdown: sampleMarkdown
         }
       ],
-      selectedIndex: 0
+      selectedIndex: 0,
+      isSaving: false
     }
   },
   created: function(){
@@ -103,10 +104,17 @@ export default {
       this.saveMemos();
     },
     saveMemos: function(){
+      if (this.isSaving){
+        return;
+      }
+      this.isSaving = true;
       firebase
         .database()
         .ref("memos/" + this.user.uid)
-        .set(this.memos);
+        .set(this.memos)
+        .then(res => {
+          this.isSaving = false;
+        })
     }
   }
 }
