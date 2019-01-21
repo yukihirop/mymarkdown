@@ -4,6 +4,7 @@ dist/
 npm-debug.log
 yarn-error.log
 !dist/index.html
+.secret
 
 # Editor directories and files
 .idea
