@@ -21,7 +21,7 @@
       <textarea class="markdown" v-model="memos[selectedIndex].markdown" ref="markdown"></textarea>
       <div class="previewWrapper" ref="preview">
         <p class="previewTitle">Preview Area</p>
-        <div class="preview markdown-body" v-html="preview()"></div>
+        <div class="preview markdownHtml" v-html="preview()"></div>
       </div>
     </div>
   </div>
