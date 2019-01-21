@@ -29,6 +29,7 @@
 
 <script>
 import markdown from "../lib/markdown";
+import sampleMarkdown from "../assets/sample"
 
 export default {
   name: "editor",
@@ -37,13 +38,14 @@ export default {
     return {
       memos: [
         {
-          markdown: ""
+          markdown: sampleMarkdown
         }
       ],
       selectedIndex: 0
     }
   },
   created: function(){
+    console.log(this.memos);
     firebase
       .database()
       .ref("memos/" + this.user.uid)
@@ -88,6 +90,7 @@ export default {
       if (this.selectedIndex > 0){
         this.selectedIndex--;
       }
+      this.saveMemos();
     },
     saveMemos: function(){
       firebase
