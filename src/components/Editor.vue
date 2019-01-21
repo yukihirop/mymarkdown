@@ -45,7 +45,6 @@ export default {
     }
   },
   created: function(){
-    console.log(this.memos);
     firebase
       .database()
       .ref("memos/" + this.user.uid)
@@ -53,6 +52,7 @@ export default {
       .then(result => {
         if(result.val()){
           this.memos = result.val();
+          this.focusMemo();
         }
       })
   },
@@ -75,9 +75,19 @@ export default {
       this.memos.push({
         markdown: "無題のメモ"
       })
+      this.selectedIndex = this.memos.length - 1;
+      this.focusMemo();
     },
     selectMemo: function(index) {
       this.selectedIndex = index
+      this.focusMemo();
+    },
+    focusMemo: function(){
+      this.$nextTick(() => {
+        const markdownDom = this.$refs.markdown;
+        markdownDom.focus();
+        markdownDom.scrollTop = markdownDom.getClientRects()[0].height;
+      });
     },
     preview: function(){
       return markdown(this.memos[this.selectedIndex].markdown)
