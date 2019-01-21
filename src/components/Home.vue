@@ -14,6 +14,13 @@
       <img class="sample" src="../assets/sample.png" alt="利用例" title="利用例">
       <p>余計な機能がないのでさくっとメモを取るだけに集中できます</p>
       <p>マークダウン記法でかけて、リアルタイムにプレビュー</p>
+      <p>ショートカットキーにより、キーボードだけで操作可能</p>
+      <div class="shortcuts">
+        <p>"Control + s"(Macの場合は"Command + s")ですぐに保存</p>
+        <p>"Alt + ↑↓"(Macの場合は"Option + ↑↓")でメモの切り替え</p>
+        <p>最後のメモ選択時に"Alt + ↓"(Macの場合は"Option + ↓")でメモの追加</p>
+        <p>"Control + Backspace"(Macの場合は"Command + delete")でメモの削除</p>
+      </div>
       <p>さぁあなたもすぐに始めてみましょう！</p>
       <button class="login" @click="googleLogin">
         Googleアカウントで5秒で登録
@@ -89,6 +96,16 @@ export default {
   .login {
     margin-top: 40px;
   }
+}
+.shortcuts {
+  p {
+    font-size: 15px;
+    margin: 10px 0;
+  }
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin-bottom: 40px;
 }
 .footer {
   width: 800px;

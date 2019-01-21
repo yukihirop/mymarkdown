@@ -58,11 +58,36 @@ export default {
       })
   },
   mounted: function(){
+    this.focusMemo();
     document.onkeydown = e => {
       if (e.key == "s" && (e.metaKey || e.ctrlKey)){
         this.saveMemos();
         return false
       }
+      if (e.key == "ArrowUp" && e.altKey){
+        if(this.selectedIndex > 0 && this.memos.length > 0){
+          this.selectMemo(this.selectedIndex - 1);
+          return false
+        }
+      }
+      if (e.key == "ArrowDown" && e.altKey){
+        if(this.selectedIndex < this.memos.length - 1){
+          this.selectMemo(this.selectedIndex + 1);
+        } else {
+          this.addMemo();
+        }
+        return false
+      }
+      if (e.key == "Backspace" && (e.metaKey || e.ctrlKey)) {
+        this.deleteMemo()
+        return false
+      }
+    }
+    const markdownDom = this.$refs.markdown;
+    const previewDom = this.$refs.preview;
+    markdownDom.onscroll = e => {
+      const ratio = markdownDom.scrollTop / (markdownDom.scrollHeight - markdownDom.getClientRects()[0].height);
+      previewDom.scrollTop = ratio * (previewDom.scrollHeight - previewDom.getClientRects()[0].height);
     }
   },
   beforeDestroy: function(){
